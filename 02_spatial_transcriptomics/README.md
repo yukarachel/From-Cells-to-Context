@@ -10,7 +10,7 @@ Spatial transcriptomics allows us to understand RNA expression from cells in tis
 - 4035 spots × 36,601 genes (raw)
 
 ## QC
-- Filtered spots with low expression. The cutoff determined by the sorted-counts knee plot was around rank 4000 (sorted total counts in descending order). The "low expression" was around 3100 total counts. I did not use a default threshold. 3995 spots retained.
+- Filtered spots with low expression. The cutoff determined by the sorted-counts knee plot was around rank 4000 (sorted total counts in descending order). The "low expression" was around 3100 total counts. I did not use a default threshold. 3995 spots retained
 - Filtered genes detected in <3 spots
 - Mitochondrial % was uniformly low (max 5.4%); no additional mito filtering applied
 
@@ -18,7 +18,7 @@ Spatial transcriptomics allows us to understand RNA expression from cells in tis
 - Normalized (target_sum=1e4) + log1p, 2000 HVGs, PCA (50 components), Leiden (resolution=1.0) → 10 clusters
 
 ## Spatial findings
-- Clusters form spatially coherent oval regions on tissue, not random speckling, which suggests clusters correspond to real anatomical structures (ex. germinal centers, T-cell zones)
+- Clusters form spatially coherent oval regions/organic shapes on tissue, not random speckles, which suggests clusters correspond to real anatomical structures (ex. germinal centers, T-cell zones)
 - Marker genes (CD3E, CD19, CD68) show spatial enrichment aligned with cluster boundaries
 - Moran's I spatial autocorrelation identified IGKC, IGHG4, IGHG1, CCL21, FDCSP, MT-CO1, IGHG2, MT-CO3 as spatially variable, which overlaps with cluster-defining marker genes
 
