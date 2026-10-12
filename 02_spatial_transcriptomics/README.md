@@ -1,6 +1,6 @@
 # Spatial Transcriptomics Analysis on 10x Visium Lymph Node Dataset
 
-## What is spatial transcriptomics / what is a Visium spot
+## Overview
 Spatial transcriptomics allows us to understand RNA expression from cells in tissue with spatial context. While scRNA-seq data can give us expression information from transcripts per cell, we lack any context about where in tissue they lie. Knowing which part of tissue shows expression from which genes can help solve more complex biological problems, like knowing how a T-cell behaves near a tumor cell vs far away from one. Spatial transcriptomics is analyzing the transcriptome while utilizing its spatial information in tissue. 
 
 10x Visium spots are 55 um in diameter with a 100um center-to-center distance between them. They can capture between 1-10 cells on average, which depends on the tissue type and cell size. In this project, I investigated the expression of spots, which could contain multiple cells within each spot. These spots and their locations in tissue are analyzed as well, to extract spatial patterns. I used two independent methods to conclude that there are several marker genes that can expose structural information of tissue. 
