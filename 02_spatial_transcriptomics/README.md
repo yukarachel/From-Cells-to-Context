@@ -23,7 +23,7 @@ Spatial transcriptomics allows us to understand RNA expression from cells in tis
 - Moran's I spatial autocorrelation identified IGKC, IGHG4, IGHG1, CCL21, FDCSP, MT-CO1, IGHG2, MT-CO3 as spatially variable, which overlaps with cluster-defining marker genes
 
 ## Figures
-The knee plot used to determine the cutoff for low transcription spots. 
+The knee plot used to determine the cutoff for low transcription spots. I dropped ~40 spots that had low expression.
 ![alt text](figures/image-3.png)
 
 After Leiden clustering, I used UMAP to visualize all 10 clusters in 2D. 
