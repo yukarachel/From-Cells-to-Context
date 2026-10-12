@@ -24,16 +24,16 @@ Spatial transcriptomics allows us to understand RNA expression from cells in tis
 
 ## Figures
 The knee plot used to determine the cutoff for low transcription spots. 
-![alt text](image-3.png)
+![alt text](figures/image-3.png)
 
 After Leiden clustering, I used UMAP to visualize all 10 clusters in 2D. 
-![alt text](image.png)
+![alt text](figures/image.png)
 
 Based on known marker genes for T-cells, B-cells, and macrophages, I created a spatial plot showing the expression of CD3E, CD19, and CD68 on the tissue. This does correlate to the leiden clustering above. 
-![alt text](image-2.png)
+![alt text](figures/image-2.png)
 
 I looked into other genes that could uncover spatial data using Moran's I. These genes are most informative in showing spatial context. 
-![alt text](image-1.png)
+![alt text](figures/image-1.png)
 
 Finally, I showed the tissue map of the most indicative genes found by both the spatial Moran's I method and transcription based clustering method. 
-![alt text](image-4.png)
+![alt text](figures/image-4.png)
