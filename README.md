@@ -28,6 +28,7 @@ My motivation for developing this project was to advance my technical skills in 
 - Trained on 3 linear classifiers (logistic regression via scikit-learn) and 1 non-linear classifier (random forest via scikit-learn), and compared performance. Highest performance was 99% by logistic regression using 10 principle components as features 
 - Fine tuned hyperparameters (number of principle components) for logistic regression model
 - Found marker genes for each cell type using 2 independent methods (Scanpy's rank_gene_groups(), and top coefficients (genes) of logistic regression model)
+![Alt text](https://raw.githubusercontent.com/yukarachel/sc-RNA-seq-PBMC-3k/figures/umap.png)
 
 **Spatial transcriptomics of lymph node tissue:**
 - Loaded a public 10x Visium human lymph node dataset (4,035 spots × 36,601 genes). QC thresholds were chosen via a sorted count knee plot rather than arbitrary/default cutoffs, retaining 3,995 spots. Mitochondrial content was uniformly low across the tissue, so no separate mito filter was needed
@@ -36,6 +37,7 @@ My motivation for developing this project was to advance my technical skills in 
 - Moran's I spatial autocorrelation, run independently of cluster labels, identified genes with strong spatial structure. A substantial fraction of these genes (36 of the top cluster-defining markers) also appeared among the top spatially autocorrelated genes
 - Two independent methods produced overlapping genes, strengthening confidence that both are detecting real biological organization rather than noise.
 - This contrasts with the PBMC project: dissociated single-cell data can identify *what* cell types exist, but destroys any record of physical organization. Spatial transcriptomics preserves the information scRNA-seq loses.
+![alt-text](02_spatial_transcriptomics/figures/image-4.png)
 
 **Classifying cell types on morphology alone:**
 - Built a 2-convolution layer PyTorch CNN to classify tissue image patches by morphology and no transcriptional data 
@@ -44,3 +46,4 @@ My motivation for developing this project was to advance my technical skills in 
 - Cancer detection (colorectal adenocarcinoma epithelium): high precision (91%) but low recall (52%). The model flags cancer, and it's usually right, but it misses nearly half of true cancer cases (false negatives), the more clinically concerning failure.
 - Lymphocytes were poorly classified by morphology alone (21% recall), despite being clearly identifiable via gene markers (CD3E, CD19) in the spatial transcriptomics subproject. Multimodal approaches (combining RNA expression and imaging) likely could outperform either alone.
 - Debris had the lowest precision (27%). The model over-predicts this class broadly, a different failure pattern (over-flagging) than the cancer under-flagging.
+![alt-text](03_tissue_cnn/figures/confusion.png)
