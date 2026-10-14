@@ -24,7 +24,7 @@ My motivation for developing this project was to advance my technical skills in 
 
 **PBMC single-cell analysis:**
 - Used PCA to find first 10 principle components that informed Leiden clustering
-- Clustered into 9 biologically meaningful classes (12 classes condensed to 9) of immunce cell types (B-cell, T-cell, etc.)
+- Clustered into 9 biologically meaningful classes (12 classes condensed to 9) of immune cell types (B-cell, T-cell, etc.)
 - Trained on 3 linear classifiers (logistic regression via scikit-learn) and 1 non-linear classifier (random forest via scikit-learn), and compared performance. Highest performance was 99% by logistic regression using 10 principle components as features 
 - Fine tuned hyperparameters (number of principle components) for logistic regression model
 - Found marker genes for each cell type using 2 independent methods (Scanpy's rank_gene_groups(), and top coefficients (genes) of logistic regression model)
