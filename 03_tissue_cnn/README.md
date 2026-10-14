@@ -1,7 +1,7 @@
 # Tissue Classification CNN
 
 ## Goal
-Classify histology image patches by tissue/cell type using image morphology alone, independent of any gene expression data. This is the next layer down from the spatial transcriptomics project.
+Classify histology image patches by tissue/cell type using image morphology alone, independent of any gene expression data. This is the next layer down from the spatial transcriptomics project, where I analyzed lymph node spatial expression data to determine groups of cell populations using RNA and spatial data. Now, I want to see if cell typing is possible using images and a CNN. 
 
 ## Dataset
 PathMNIST (MedMNIST): 9-class colorectal histology patches, 28x28 RGB.
@@ -27,4 +27,3 @@ Small 2-conv-layer CNN trained from scratch (same base architecture validated on
 ## Future directions
 - Transfer learning (ResNet18 fine-tuning) to address the train/test gap
 - Data augmentation
-- Binary cancer/non-cancer reframing as a simpler, more clinically direct task

@@ -2,48 +2,40 @@
 
 ## Project Summary
 
-This project explores immune cell biology across single-cell transcriptomics, spatial transcriptomics, and tissue image classification. My goal was to learn from the ground up, how the three can provide information about cell typing. The single-cell portion explored "what cell types exist" (scRNA-seq), the spatial transcriptomics asked "where do they live in tissue" (10x Visium dataset), and the histology dataset asked "can tissue structure be recognized from image morphology alone, independent of RNA". My motivation for developing this project was to advance my technical skills in preparation for a data science internship at Element Biosciences. I've been expanding my toolkit to meet the desired skillset of the informatics team, which I was able to gain some insight about from a current member on the team. I wanted to design a cohesive 3-part project to interact with spatial data, 10x data, cell typing, spatial data objects, and CNNs, as they were mentioned to be relevant to the team's work.
+This project explores immune cell biology across single-cell transcriptomics, spatial transcriptomics, and tissue image classification. My goal was to learn from the ground up, how the three subprojects can cell type and classify using different data types. The single-cell portion explored scRNA-seq data, the spatial transcriptomics asked the question, "where do they live in tissue" (10x Visium dataset), and the histology dataset asked, "can tissue structure be recognized from image morphology alone?". 
+
+My motivation for developing this project was to advance my technical skills in preparation for a data science internship at Element Biosciences. I've been expanding my toolkit to meet the desired skillset of the informatics team, which I was able to gain some insight about from a current member on the team. I wanted to design a cohesive 3-part project to interact with spatial data, 10x data, cell typing, spatial data objects, and CNNs, as they were mentioned to be relevant to the team's work.
 
 ## Goals
 
-- Build real, working analysis pipelines in each area with a cohesive story, rather than 3 unrelated repos. 
-- Demonstrate the same analytical logic (QC, normalization, dimensionality reduction, clustering) applies across modalities, with adaptations at each step.
+- Build working analysis pipelines in each area with a cohesive story, rather than 3 unrelated repos. 
+- Demonstrate that the same analytical logic (QC, normalization, dimensionality reduction, clustering) applies across modalities, with adaptations at each step.
 - Embed my observations and understanding throughout the notebooks, to demonstrate my deep understanding of the analysis. 
 
 ## Pipeline
 
-1. **[`01_scrna_pbmc/`](./01_scrna_pbmc/)** — Single-cell RNA-seq analysis of PBMC data: QC, normalization, PCA, UMAP, Leiden clustering, marker-gene-based cell-type annotation, logistic regression classifier. Establishes cell-type identity from transcription alone, with no spatial context.
+1. **[PBMC Single-cell RNA-seq analysis**]: QC, normalization, PCA, UMAP, Leiden clustering, marker-gene-based cell-type annotation, logistic regression classifier. Establishes cell-type identity from transcription alone, with no spatial context.
 
-2. **[`02_spatial_transcriptomics/`](./02_spatial_transcriptomics/)** — 10x Visium spatial transcriptomics on human lymph node tissue. Same core analytical logic as the PBMC project (QC, normalization, clustering), extended to data where each unit is a multi-cell Visium spot with a physical (x, y) tissue location. Tests whether transcriptional clustering corresponds to real spatial tissue organization.
+2. **[`02_spatial_transcriptomics/`](./02_spatial_transcriptomics/)**: 10x Visium spatial transcriptomics on human lymph node tissue. Same core analytical logic as the PBMC project (QC, normalization, clustering), extended to data where each unit is a multi-cell Visium spot with a physical (x, y) tissue location. Tests whether transcriptional clustering corresponds to real spatial tissue organization, and finds marker genes that represent distinct immune cell populations occupying specific physical locations within the tissue.
 
-3. **[`03_tissue_cnn/`](./03_tissue_cnn/)** *(in progress)* — A PyTorch CNN classifying tissue image patches by morphology, independent of any RNA measurement. The next layer down: if spatial transcriptomics shows gene expression organizes into physical tissue structure, can that same structure eventually be recognized directly from how tissue *looks*, without sequencing at all?
+3. **[`03_tissue_cnn/`](./03_tissue_cnn/)** *(in progress)*: A PyTorch CNN classifying tissue image patches by morphology, independent of any RNA measurement. Main question: If spatial transcriptomics shows gene expression organizes into physical tissue structure, can that same structure eventually be recognized directly from how tissue *looks*, without sequencing at all?
 
-## Conclusions So Far
+## Conclusions
 
-**PBMC (single-cell):** [1–2 sentences on your actual PBMC findings/conclusions — fill in from that project]
+**PBMC single-cell analysis:**
+- Used PCA to find first 10 principle components that informed Leiden clustering
+- Clustered into 9 biologically meaningful classes of immunce cell types
+- Trained on 3 linear classifiers and 1 non-linear classifier, and compared performance 
+- Fine tuned hyperparameters for logistic regression model using principle components as features
+- Found marker genes for each cell type using 2 independent methods
 
-**Spatial transcriptomics (lymph node):**
-- Loaded a public 10x Visium human lymph node dataset (4,035 spots × 36,601 genes). QC thresholds were chosen via a sorted count knee plot rather than arbitrary/default cutoffs, retaining 3,995 spots. Mitochondrial content was uniformly low across the tissue, so no separate mito filter was needed.
-- Standard normalization, HVG selection, PCA, and Leiden clustering (resolution=1.0) produced 9 transcriptionally distinct clusters.
-- Critically, these clusters were **not randomly scattered** when overlaid on the tissue image — they formed spatially coherent, patch-like regions consistent with known lymph node anatomy (ex. germinal centers, T-cell zones). This is the core finding of the subproject: transcriptional identity and physical tissue organization are not independent, they correspond.
-- Moran's I spatial autocorrelation, run independently of cluster labels, identified genes with strong spatial structure. A substantial fraction of these genes (36 of the top cluster-defining markers) also appeared among the top spatially autocorrelated genes — two independent methods converging on overlapping genes, which strengthens confidence that both are detecting real biological organization rather than noise.
-- This contrasts directly with the PBMC project: dissociated single-cell data can identify *what* cell types exist, but the dissociation process destroys any record of physical organization. Spatial transcriptomics preserves exactly the information scRNA-seq loses.
+**Spatial transcriptomics of lymph node tissue:**
+- Loaded a public 10x Visium human lymph node dataset (4,035 spots × 36,601 genes). QC thresholds were chosen via a sorted count knee plot rather than arbitrary/default cutoffs, retaining 3,995 spots. Mitochondrial content was uniformly low across the tissue, so no separate mito filter was needed
+- Standard normalization, HVG selection, PCA, and Leiden clustering (resolution=1.0) produced 9 transcriptionally distinct clusters
+- Clusters were **not randomly scattered** when overlaid on the tissue image. They formed spatially coherent, patch-like regions consistent with known lymph node anatomy (ex. germinal centers, T-cell zones). Transcriptional identity and physical tissue organization are not independent, they correspond
+- Moran's I spatial autocorrelation, run independently of cluster labels, identified genes with strong spatial structure. A substantial fraction of these genes (36 of the top cluster-defining markers) also appeared among the top spatially autocorrelated genes — Two independent methods produced overlapping genes, strengthening confidence that both are detecting real biological organization rather than noise.
+- This contrasts with the PBMC project: dissociated single-cell data can identify *what* cell types exist, but destroys any record of physical organization. Spatial transcriptomics preserves the information scRNA-seq loses.
 
-## What's Real Analysis vs. Demonstration
-
-- PBMC and spatial transcriptomics subprojects are full, real analyses on public data, with QC decisions justified from the data itself rather than copied defaults.
-- The CNN subproject (in progress) is a learning-scoped exercise on a small public dataset — not a production-grade or state-of-the-art model.
-- Not included: full cell-type deconvolution (Tangram), RNA+protein multimodal integration, or custom segmentation models. These are noted as future directions, not implemented here.
-
-## Next Steps (CNN)
-
-The current focus is `03_tissue_cnn/`: building a small CNN in PyTorch to classify tissue image patches by morphology. Planned approach:
-- Start with a from-scratch CNN on a simple dataset to build intuition for convolution, pooling, and feature maps
-- Move to a small public histology-patch dataset, train a baseline CNN, then compare against a transfer-learning approach (e.g. fine-tuned ResNet18)
-- Evaluate with a proper train/val/test split and confusion matrix, with honest discussion of failure modes rather than overclaiming performance
-
-## Future Directions
-
-- Tangram-based or marker-based cell-type deconvolution applied to the spatial data
-- RNA+protein (CITE-seq-style) multimodal integration
-- Image segmentation (e.g. Cellpose-style) as a more granular alternative to patch classification
+**Classifying cell types on morphology alone:**
+- Built a 2-convolution layer PyTorch CNN to classify tissue image patches by morphology and no transcriptional data. 
+- Evaluated with a proper train/val/test split and confusion matrix, with honest discussion of where the model made mistakes
