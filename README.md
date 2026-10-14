@@ -28,7 +28,7 @@ My motivation for developing this project was to advance my technical skills in 
 - Trained on 3 linear classifiers (logistic regression via scikit-learn) and 1 non-linear classifier (random forest via scikit-learn), and compared performance. Highest performance was 99% by logistic regression using 10 principle components as features 
 - Fine tuned hyperparameters (number of principle components) for logistic regression model
 - Found marker genes for each cell type using 2 independent methods (Scanpy's rank_gene_groups(), and top coefficients (genes) of logistic regression model)
-![Alt text](https://raw.githubusercontent.com/yukarachel/sc-RNA-seq-PBMC-3k/figures/umap.png)
+![alt-text](03_tissue_cnn/figures/umap.png)
 
 **Spatial transcriptomics of lymph node tissue:**
 - Loaded a public 10x Visium human lymph node dataset (4,035 spots × 36,601 genes). QC thresholds were chosen via a sorted count knee plot rather than arbitrary/default cutoffs, retaining 3,995 spots. Mitochondrial content was uniformly low across the tissue, so no separate mito filter was needed
