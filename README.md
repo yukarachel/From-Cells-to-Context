@@ -14,7 +14,7 @@ My motivation for developing this project was to advance my technical skills in 
 
 ## Pipeline
 
-1. **[PBMC Single-cell RNA-seq Analysis](https://github.com/yukarachel/sc-RNA-seq-PBMC-3k): QC, normalization, PCA, UMAP, Leiden clustering, marker-gene-based cell-type annotation, logistic regression classifier. Establishes cell-type identity from transcription alone, with no spatial context.
+1. **[PBMC Single-cell RNA-seq Analysis](https://github.com/yukarachel/sc-RNA-seq-PBMC-3k)**: QC, normalization, PCA, UMAP, Leiden clustering, marker-gene-based cell-type annotation, logistic regression classifier. Establishes cell-type identity from transcription alone, with no spatial context.
 
 2. **[`02_spatial_transcriptomics/`](./02_spatial_transcriptomics/)**: 10x Visium spatial transcriptomics on human lymph node tissue. Same core analytical logic as the PBMC project (QC, normalization, clustering), extended to data where each unit is a multi-cell Visium spot with a physical (x, y) tissue location. Tests whether transcriptional clustering corresponds to real spatial tissue organization, and finds marker genes that represent distinct immune cell populations occupying specific physical locations within the tissue.
 
