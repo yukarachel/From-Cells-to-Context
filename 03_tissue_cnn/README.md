@@ -7,7 +7,7 @@ Classify histology image patches by tissue/cell type using image morphology alon
 PathMNIST (MedMNIST): 9-class colorectal histology patches, 28x28 RGB.
 
 ## Architecture
-Small 2-conv-layer CNN trained from scratch (same base architecture validated on FashionMNIST first, see cnn_training.ipynb).
+Small 2-conv-layer CNN trained from scratch (same base architecture validated on FashionMNIST first, see cnn_practice.ipynb).
 
 ## Results
 - Train accuracy: 80.1% (5 epochs)
