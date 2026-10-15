@@ -36,14 +36,14 @@ My motivation for developing this project was to advance my technical skills in 
 - Clusters were **not randomly scattered** when overlaid on the tissue image. They formed spatially coherent, patch-like regions consistent with known lymph node anatomy (ex. germinal centers, T-cell zones). Transcriptional identity and physical tissue organization are not independent, they correspond
 - Moran's I spatial autocorrelation, run independently of cluster labels, identified genes with strong spatial structure. A substantial fraction of these genes (36 of the top cluster-defining markers) also appeared among the top spatially autocorrelated genes
 - Two independent methods produced overlapping genes, strengthening confidence that both are detecting real biological organization rather than noise.
-- This contrasts with the PBMC project: dissociated single-cell data can identify *what* cell types exist, but destroys any record of physical organization. Spatial transcriptomics preserves the information scRNA-seq loses.
+- This contrasts with the PBMC project: dissociated single-cell data can identify *what* cell types exist, but destroys any record of physical organization. Spatial transcriptomics preserves the information scRNA-seq loses
 ![alt-text](02_spatial_transcriptomics/figures/image-4.png)
 
 **Classifying cell types on morphology alone:**
 - Built a 2-convolution layer PyTorch CNN to classify tissue image patches by morphology and no transcriptional data 
 - "The PathMNIST is based on a prior study for predicting survival from colorectal cancer histology slides, providing a dataset (NCT-CRC-HE-100K) of 100,000 non-overlapping image patches from hematoxylin & eosin stained histological images, and a test dataset (CRC-VAL-HE-7K) of 7,180 image patches from a different clinical center. The dataset is comprised of 9 types of tissues, resulting in a multi-class classification task." 
 - Evaluated with a proper train/val/test split and confusion matrix, with honest discussion of where the model made mistakes
-- Cancer detection (colorectal adenocarcinoma epithelium): high precision (91%) but low recall (52%). The model flags cancer, and it's usually right, but it misses nearly half of true cancer cases (false negatives), the more clinically concerning failure.
-- Lymphocytes were poorly classified by morphology alone (21% recall), despite being clearly identifiable via gene markers (CD3E, CD19) in the spatial transcriptomics subproject. Multimodal approaches (combining RNA expression and imaging) likely could outperform either alone.
+- Cancer detection (colorectal adenocarcinoma epithelium): high precision (91%) but low recall (52%). The model flags cancer, and it's usually right, but it misses nearly half of true cancer cases (false negatives), the more clinically concerning failure
+- Lymphocytes were poorly classified by morphology alone (21% recall), despite being clearly identifiable via gene markers (CD3E, CD19) in the spatial transcriptomics subproject. Multimodal approaches (combining RNA expression and imaging) likely could outperform either alone
 - Debris had the lowest precision (27%). The model over-predicts this class broadly, a different failure pattern (over-flagging) than the cancer under-flagging.
 ![alt-text](03_tissue_cnn/figures/confusion.png)
