@@ -18,6 +18,7 @@ Small 2-conv-layer CNN trained from scratch (same base architecture validated on
 - **Cancer detection (colorectal adenocarcinoma epithelium):** high precision (91%) but low recall (52%). The model flags cancer, and it's usually right, but it misses nearly half of true cancer cases (false negatives), the more clinically concerning failure.
 - **Lymphocytes were poorly classified by morphology alone (21% recall)**, despite being clearly identifiable via gene markers (CD3E, CD19) in the spatial transcriptomics subproject. Multimodal approaches (combining RNA expression and imaging) likely could outperform either alone.
 - **Debris** had the lowest precision (27%). The model over-predicts this class broadly, a different failure pattern (over-flagging) than the cancer under-flagging.
+![alttext](figures/confusion.png)
 
 ## Limitations
 - No data augmentation
